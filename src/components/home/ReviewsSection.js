@@ -7,45 +7,45 @@ import { REVIEWS } from '@/data/reviews';
 
 export default function ReviewsSection() {
   return (
-    <section className="py-24 sm:py-32 bg-[#12100F] text-[#F4EFE6] border-t border-[#B89A63]/15 overflow-hidden">
+    <section className="py-24 sm:py-32 bg-[#12100F] text-[#F4EFE6] border-t border-stone-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="CRITICAL APPRAISALS"
-          title="In the Words of Our Guests"
-          subtitle="Reflections from culinary critics, visiting international chefs, and patrons who hold our tables dear."
+          eyebrow="PATRON LOG & REFLECTIONS"
+          title="Guest Notes"
+          subtitle="Reflections and observations from patrons who have shared our candlelit salons and tasting sequences."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {REVIEWS.map((review, idx) => (
             <motion.div
               key={review.id}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: idx * 0.12 }}
-              className="relative p-8 sm:p-10 bg-[#1A1715] border border-[#B89A63]/25 flex flex-col justify-between group hover:border-[#B89A63]/60 transition-colors"
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="relative p-8 sm:p-9 bg-[#1A1715] border border-stone-800 flex flex-col justify-between group hover:border-[#B89A63]/50 transition-colors"
             >
-              <Quote className="w-8 h-8 text-[#B89A63]/25 mb-4 group-hover:text-[#B89A63]/40 transition-colors" />
+              <Quote className="w-7 h-7 text-[#B89A63]/30 mb-4" />
 
-              <blockquote className="font-serif italic text-base sm:text-lg text-stone-200 leading-relaxed mb-8 font-light">
+              <blockquote className="font-serif italic text-base sm:text-lg text-stone-200 leading-relaxed mb-6 font-light">
                 “{review.quote}”
               </blockquote>
 
-              <div className="pt-6 border-t border-[#B89A63]/20 flex items-end justify-between">
+              <div className="pt-5 border-t border-stone-800 flex items-end justify-between">
                 <div>
-                  <div className="font-serif text-lg text-[#FAF7F2] font-medium">
+                  <div className="font-serif text-base text-[#FAF7F2] font-medium">
                     {review.author}
                   </div>
                   <div className="text-xs text-[#B89A63] font-light mt-0.5">
                     {review.title}
                   </div>
-                  <div className="text-[11px] text-stone-500 uppercase tracking-wider mt-1">
-                    Noted dish: <span className="text-stone-400">{review.dishMentioned}</span>
+                  <div className="text-[10px] text-stone-500 uppercase tracking-wider mt-1 font-mono">
+                    Dish: <span className="text-stone-300">{review.dishMentioned}</span>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <span className="text-[11px] font-mono tracking-wider text-stone-400 uppercase bg-[#24201D] px-2.5 py-1 border border-[#B89A63]/20">
+                  <span className="text-[10px] font-mono tracking-wider text-stone-400 uppercase bg-[#221F1C] px-2.5 py-1 border border-stone-700/50">
                     {review.source}
                   </span>
                 </div>

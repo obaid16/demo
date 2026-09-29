@@ -3,15 +3,15 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Maximize2, X, ChevronLeft, ChevronRight, Camera, Sparkles } from 'lucide-react';
+import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { GALLERY_ITEMS } from '@/data/gallery';
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Photographs' },
+  { id: 'all', label: 'All Archive' },
   { id: 'cuisine', label: 'Culinary Plating' },
-  { id: 'interior', label: 'Salons & Architecture' },
-  { id: 'craft', label: 'The Hearth & Craft' },
+  { id: 'interior', label: 'Salons & Terraces' },
+  { id: 'craft', label: 'The Hearth Craft' },
   { id: 'drinks', label: 'Botanical Elixirs' },
 ];
 
@@ -34,6 +34,16 @@ export default function GalleryPage() {
     setSelectedIdx((prev) => (prev === filteredItems.length - 1 ? 0 : prev + 1));
   };
 
+  // Helper for varied editorial grid spans
+  const getGridSpan = (index) => {
+    if (activeCategory !== 'all') return 'col-span-1 aspect-[4/3]';
+    const mod = index % 7;
+    if (mod === 0) return 'md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto';
+    if (mod === 3) return 'md:row-span-2 aspect-[3/4]';
+    if (mod === 6) return 'md:col-span-2 aspect-[16/9]';
+    return 'col-span-1 aspect-[4/3]';
+  };
+
   return (
     <div className="pt-32 pb-32 bg-[#171513] text-[#F4EFE6] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,8 +53,8 @@ export default function GalleryPage() {
           subtitle="A photographic chronicle of our live sigri hearth, hand-hammered brass salons, and the quiet theater of tableside service."
         />
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-14">
+        {/* Minimal Category Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-14">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
@@ -54,10 +64,10 @@ export default function GalleryPage() {
                   setActiveCategory(cat.id);
                   setSelectedIdx(null);
                 }}
-                className={`px-5 py-2.5 text-xs uppercase tracking-widest transition-all ${
+                className={`px-4 py-2 text-xs uppercase tracking-widest transition-all rounded-[2px] cursor-pointer ${
                   isActive
-                    ? 'bg-[#B89A63] text-[#171513] font-semibold border border-[#B89A63] shadow-md'
-                    : 'bg-[#211E1B] text-stone-300 hover:text-white border border-[#B89A63]/20 hover:border-[#B89A63]/40'
+                    ? 'bg-[#A9573F] text-white font-semibold'
+                    : 'bg-[#1C1916] text-stone-400 hover:text-white border border-stone-800'
                 }`}
               >
                 {cat.label}
@@ -66,49 +76,50 @@ export default function GalleryPage() {
           })}
         </div>
 
-        {/* Masonry-Style Grid */}
+        {/* Varied Editorial Masonry Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]"
         >
           <AnimatePresence>
             {filteredItems.map((item, idx) => (
               <motion.div
                 layout
                 key={item.id}
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.35 }}
                 onClick={() => openLightbox(idx)}
-                className={`group relative overflow-hidden bg-[#1E1B18] border border-[#B89A63]/25 hover:border-[#B89A63] cursor-pointer transition-all duration-500 ${
-                  item.aspect === 'portrait' ? 'aspect-[3/4]' : 'aspect-[4/3]'
-                }`}
+                className={`group relative overflow-hidden bg-[#1E1B18] border border-stone-800 hover:border-[#B89A63]/60 cursor-pointer transition-all duration-500 rounded-[2px] ${getGridSpan(
+                  idx
+                )}`}
               >
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#100E0D] via-[#100E0D]/30 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#100E0D] via-[#100E0D]/20 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300" />
 
                 {/* Hover Meta */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                <div className="absolute inset-0 p-5 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                   <div className="flex justify-end">
-                    <span className="w-8 h-8 rounded-full bg-[#171513]/80 border border-[#B89A63]/50 flex items-center justify-center text-[#B89A63]">
+                    <span className="w-7 h-7 rounded-full bg-[#171513]/90 border border-stone-700 flex items-center justify-center text-[#B89A63]">
                       <Maximize2 className="w-3.5 h-3.5" />
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[10px] uppercase tracking-widest text-[#B89A63] block">
+                    <span className="text-[10px] uppercase tracking-widest text-[#B89A63] block font-mono">
                       {item.location}
                     </span>
-                    <h3 className="font-serif text-lg sm:text-xl text-[#FAF7F2] leading-snug mt-1">
+                    <h3 className="font-serif text-base sm:text-lg text-[#FAF7F2] leading-snug mt-1">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-stone-300 font-light mt-1 line-clamp-2">
+                    <p className="text-[11px] text-stone-300 font-light mt-0.5 line-clamp-2">
                       {item.caption}
                     </p>
                   </div>
@@ -130,10 +141,10 @@ export default function GalleryPage() {
           >
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 p-3 text-stone-300 hover:text-white bg-[#24201D] border border-[#B89A63]/30 rounded-full z-50 hover:bg-[#B89A63] hover:text-[#171513] transition-colors"
+              className="absolute top-6 right-6 p-2.5 text-stone-300 hover:text-white bg-[#221F1C] border border-stone-700 rounded-full z-50 cursor-pointer"
               aria-label="Close Lightbox"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
 
             {/* Nav Arrows */}
@@ -142,10 +153,10 @@ export default function GalleryPage() {
                 e.stopPropagation();
                 prevImage();
               }}
-              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 text-stone-300 hover:text-white bg-[#24201D]/80 border border-[#B89A63]/30 rounded-full z-50 hover:bg-[#B89A63] hover:text-[#171513] transition-colors"
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-2.5 text-stone-300 hover:text-white bg-[#221F1C]/80 border border-stone-700 rounded-full z-50 hover:bg-[#A9573F] transition-colors cursor-pointer"
               aria-label="Previous image"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
 
             <button
@@ -153,27 +164,28 @@ export default function GalleryPage() {
                 e.stopPropagation();
                 nextImage();
               }}
-              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 text-stone-300 hover:text-white bg-[#24201D]/80 border border-[#B89A63]/30 rounded-full z-50 hover:bg-[#B89A63] hover:text-[#171513] transition-colors"
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-2.5 text-stone-300 hover:text-white bg-[#221F1C]/80 border border-stone-700 rounded-full z-50 hover:bg-[#A9573F] transition-colors cursor-pointer"
               aria-label="Next image"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
             </button>
 
             {/* Active Image Box */}
-            <div className="relative max-w-5xl max-h-[85vh] w-full flex flex-col items-center">
-              <div className="relative w-full h-[65vh] sm:h-[75vh]">
+            <div className="relative max-w-4xl max-h-[85vh] w-full flex flex-col items-center">
+              <div className="relative w-full h-[65vh]">
                 <Image
                   src={filteredItems[selectedIdx].image}
                   alt={filteredItems[selectedIdx].title}
                   fill
+                  sizes="100vw"
                   className="object-contain"
                 />
               </div>
-              <div className="mt-4 text-center max-w-xl">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89A63]">
+              <div className="mt-4 text-center max-w-lg">
+                <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89A63] font-mono">
                   {filteredItems[selectedIdx].location}
                 </span>
-                <h3 className="font-serif text-xl sm:text-2xl text-[#FAF7F2] mt-1">
+                <h3 className="font-serif text-xl text-[#FAF7F2] mt-0.5">
                   {filteredItems[selectedIdx].title}
                 </h3>
                 <p className="text-xs text-stone-400 font-light mt-1">

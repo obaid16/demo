@@ -1,12 +1,12 @@
 export const MENU_CATEGORIES = [
   { id: 'all', name: 'All Dishes', count: 24 },
-  { id: 'starters', name: 'Small Plates & Starters', count: 6 },
-  { id: 'tandoor', name: 'The Sigri & Tandoor', count: 4 },
-  { id: 'mains', name: 'Curated Mains', count: 6 },
-  { id: 'biryani', name: 'Royal Dum Biryani', count: 3 },
-  { id: 'breads', name: 'Artisanal Breads', count: 3 },
-  { id: 'desserts', name: 'Sweet Endings', count: 4 },
-  { id: 'drinks', name: 'Cocktails & Elixirs', count: 4 },
+  { id: 'starters', name: 'Starters', count: 6 },
+  { id: 'tandoor', name: 'Tandoor & Sigri', count: 4 },
+  { id: 'mains', name: 'Curries', count: 6 },
+  { id: 'biryani', name: 'Biryani', count: 3 },
+  { id: 'breads', name: 'Breads', count: 3 },
+  { id: 'desserts', name: 'Desserts', count: 4 },
+  { id: 'drinks', name: 'Drinks & Elixirs', count: 4 },
 ];
 
 export const MENU_ITEMS = [
@@ -27,7 +27,7 @@ export const MENU_ITEMS = [
     prepTime: '15-18 mins',
     calories: '380 kcal',
     pairing: 'Chardonnay or Smoked Cardamom Highball',
-    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=1200&q=80',
     tags: ['Tandoor Smoked', 'Chef Signature', 'Vegetarian Luxury']
   },
   {
@@ -65,7 +65,7 @@ export const MENU_ITEMS = [
     prepTime: '12 mins',
     calories: '340 kcal',
     pairing: 'Dry Riesling or Jasmine Blossom Infusion',
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1200&q=80',
     tags: ['Crisp & Melty', 'Vegetarian']
   },
   {
@@ -84,7 +84,7 @@ export const MENU_ITEMS = [
     prepTime: '15 mins',
     calories: '490 kcal',
     pairing: 'Full-bodied Pinot Noir or Old Fashioned with Smoked Clove',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=1200&q=80',
     tags: ['Royal Lucknowi', 'Melt in Mouth', 'Chef Signature']
   },
   {
@@ -204,7 +204,7 @@ export const MENU_ITEMS = [
     tags: ['Charred Greens', 'Vegetarian']
   },
 
-  // MAINS
+  // CURRIES / MAINS
   {
     id: 'old-delhi-butter-chicken',
     name: 'Old Delhi Grand Butter Chicken (1950)',
@@ -259,7 +259,7 @@ export const MENU_ITEMS = [
     prepTime: '20 mins',
     calories: '680 kcal',
     pairing: 'Robust Cabernet Sauvignon or Spiced Rum Toddy',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1200&q=80',
     tags: ['Sealed Clay Pot', 'Earthy & Spicy', 'Chef Signature']
   },
   {
@@ -316,7 +316,7 @@ export const MENU_ITEMS = [
     prepTime: '14 mins',
     calories: '380 kcal',
     pairing: 'Gewürztraminer or Kashmiri Kahwa Spritz',
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=1200&q=80',
     tags: ['Authentic Wazwan', 'Vegan Friendly']
   },
 
@@ -415,7 +415,7 @@ export const MENU_ITEMS = [
     prepTime: '8 mins',
     calories: '240 kcal',
     pairing: 'Pair with Galouti Kebab or Nihari',
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=1200&q=80',
     tags: ['Royal Court Bread']
   },
   {

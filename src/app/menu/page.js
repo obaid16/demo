@@ -12,15 +12,17 @@ export default function MenuPage() {
     <div className="pt-32 pb-28 bg-[#171513] text-[#F4EFE6] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="THE REPERTOIRE"
-          title="Curated Dining Menu"
-          subtitle="Every creation honors the ancient culinary courts of India, elevated with refined contemporary artistry, single-origin spices, and slow charcoal hearth craft."
+          eyebrow="OUR MENU"
+          title="A celebration of Indian flavours."
+          subtitle="From the fiery hearth of the tandoor to delicate slow-steamed Awadhi dum biryanis, each recipe honors heritage with contemporary culinary restraint."
         />
 
         <Suspense
           fallback={
-            <div className="py-24 text-center text-[#B89A63] text-sm tracking-widest uppercase">
-              Loading Repertoire...
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 animate-pulse">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="aspect-[4/3] bg-[#211E1B] border border-stone-800" />
+              ))}
             </div>
           }
         >
