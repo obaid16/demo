@@ -1,27 +1,28 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Flame, Sparkles } from 'lucide-react';
 import FoodCard from '@/components/menu/FoodCard';
 import { MENU_ITEMS, MENU_CATEGORIES } from '@/data/menu';
 
-export default function MenuBrowser() {
+function CategoryUrlSync({ onCategorySelect }) {
   const searchParams = useSearchParams();
-  const initialCategory = searchParams.get('category') || 'all';
-
-  const [activeCategory, setActiveCategory] = useState(initialCategory);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [dietaryFilter, setDietaryFilter] = useState('all'); // 'all', 'veg', 'non-veg', 'spicy'
-  const [sortBy, setSortBy] = useState('featured'); // 'featured', 'price-low', 'price-high'
-
   useEffect(() => {
     const cat = searchParams.get('category');
     if (cat) {
-      setActiveCategory(cat);
+      onCategorySelect(cat);
     }
-  }, [searchParams]);
+  }, [searchParams, onCategorySelect]);
+  return null;
+}
+
+export default function MenuBrowser() {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [dietaryFilter, setDietaryFilter] = useState('all'); // 'all', 'veg', 'non-veg', 'spicy'
+  const [sortBy, setSortBy] = useState('featured'); // 'featured', 'price-low', 'price-high'
 
   // Filter and sort items
   const filteredDishes = useMemo(() => {
@@ -67,6 +68,9 @@ export default function MenuBrowser() {
 
   return (
     <div className="w-full">
+      <Suspense fallback={null}>
+        <CategoryUrlSync onCategorySelect={setActiveCategory} />
+      </Suspense>
       {/* Editorial Category Navigation Bar */}
       <div className="mb-10 overflow-x-auto pb-2 scrollbar-none border-b border-stone-800">
         <nav className="flex items-center gap-1 sm:gap-2 min-w-max pb-3">

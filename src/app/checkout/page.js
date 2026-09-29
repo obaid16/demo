@@ -303,65 +303,77 @@ export default function CheckoutPage() {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('upi')}
-                  className={`p-4 border text-left flex items-center gap-3 transition-colors ${
+                  className={`p-4 border text-left flex items-center justify-between transition-colors rounded-[2px] cursor-pointer ${
                     paymentMethod === 'upi'
-                      ? 'border-[#B89A63] bg-[#26221E] text-white'
-                      : 'border-stone-800 bg-[#161412] text-stone-400'
+                      ? 'border-[#B89A63] bg-[#24201D] text-white shadow-sm'
+                      : 'border-stone-800 bg-[#161412] text-stone-400 hover:border-stone-700'
                   }`}
                 >
-                  <QrCode className="w-5 h-5 text-[#B89A63]" />
-                  <div>
-                    <span className="font-serif text-sm text-[#FAF7F2] block">Instant UPI QR / App</span>
-                    <span className="text-[11px] text-stone-400">Google Pay, PhonePe, Cred</span>
+                  <div className="flex items-center gap-3">
+                    <QrCode className="w-5 h-5 text-[#B89A63]" />
+                    <div>
+                      <span className="font-serif text-sm text-[#FAF7F2] block">Instant UPI QR / App</span>
+                      <span className="text-[11px] text-stone-400">Google Pay, PhonePe, Cred</span>
+                    </div>
                   </div>
+                  {paymentMethod === 'upi' && <CheckCircle2 className="w-4 h-4 text-[#B89A63] shrink-0 ml-2" />}
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('card')}
-                  className={`p-4 border text-left flex items-center gap-3 transition-colors ${
+                  className={`p-4 border text-left flex items-center justify-between transition-colors rounded-[2px] cursor-pointer ${
                     paymentMethod === 'card'
-                      ? 'border-[#B89A63] bg-[#26221E] text-white'
-                      : 'border-stone-800 bg-[#161412] text-stone-400'
+                      ? 'border-[#B89A63] bg-[#24201D] text-white shadow-sm'
+                      : 'border-stone-800 bg-[#161412] text-stone-400 hover:border-stone-700'
                   }`}
                 >
-                  <CreditCard className="w-5 h-5 text-[#B89A63]" />
-                  <div>
-                    <span className="font-serif text-sm text-[#FAF7F2] block">Credit / Debit Card</span>
-                    <span className="text-[11px] text-stone-400">Amex, Visa, Mastercard</span>
+                  <div className="flex items-center gap-3">
+                    <CreditCard className="w-5 h-5 text-[#B89A63]" />
+                    <div>
+                      <span className="font-serif text-sm text-[#FAF7F2] block">Credit / Debit Card</span>
+                      <span className="text-[11px] text-stone-400">Amex, Visa, Mastercard</span>
+                    </div>
                   </div>
+                  {paymentMethod === 'card' && <CheckCircle2 className="w-4 h-4 text-[#B89A63] shrink-0 ml-2" />}
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('cod')}
-                  className={`p-4 border text-left flex items-center gap-3 transition-colors ${
+                  className={`p-4 border text-left flex items-center justify-between transition-colors rounded-[2px] cursor-pointer ${
                     paymentMethod === 'cod'
-                      ? 'border-[#B89A63] bg-[#26221E] text-white'
-                      : 'border-stone-800 bg-[#161412] text-stone-400'
+                      ? 'border-[#B89A63] bg-[#24201D] text-white shadow-sm'
+                      : 'border-stone-800 bg-[#161412] text-stone-400 hover:border-stone-700'
                   }`}
                 >
-                  <Banknote className="w-5 h-5 text-[#B89A63]" />
-                  <div>
-                    <span className="font-serif text-sm text-[#FAF7F2] block">Cash on Delivery</span>
-                    <span className="text-[11px] text-stone-400">Exact change appreciated</span>
+                  <div className="flex items-center gap-3">
+                    <Banknote className="w-5 h-5 text-[#B89A63]" />
+                    <div>
+                      <span className="font-serif text-sm text-[#FAF7F2] block">Cash on Delivery</span>
+                      <span className="text-[11px] text-stone-400">Exact change appreciated</span>
+                    </div>
                   </div>
+                  {paymentMethod === 'cod' && <CheckCircle2 className="w-4 h-4 text-[#B89A63] shrink-0 ml-2" />}
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('restaurant')}
-                  className={`p-4 border text-left flex items-center gap-3 transition-colors ${
+                  className={`p-4 border text-left flex items-center justify-between transition-colors rounded-[2px] cursor-pointer ${
                     paymentMethod === 'restaurant'
-                      ? 'border-[#B89A63] bg-[#26221E] text-white'
-                      : 'border-stone-800 bg-[#161412] text-stone-400'
+                      ? 'border-[#B89A63] bg-[#24201D] text-white shadow-sm'
+                      : 'border-stone-800 bg-[#161412] text-stone-400 hover:border-stone-700'
                   }`}
                 >
-                  <Store className="w-5 h-5 text-[#B89A63]" />
-                  <div>
-                    <span className="font-serif text-sm text-[#FAF7F2] block">Pay at Restaurant</span>
-                    <span className="text-[11px] text-stone-400">During curbside collection</span>
+                  <div className="flex items-center gap-3">
+                    <Store className="w-5 h-5 text-[#B89A63]" />
+                    <div>
+                      <span className="font-serif text-sm text-[#FAF7F2] block">Pay at Restaurant</span>
+                      <span className="text-[11px] text-stone-400">During curbside collection</span>
+                    </div>
                   </div>
+                  {paymentMethod === 'restaurant' && <CheckCircle2 className="w-4 h-4 text-[#B89A63] shrink-0 ml-2" />}
                 </button>
               </div>
 

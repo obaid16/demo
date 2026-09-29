@@ -158,7 +158,7 @@ export default function Footer() {
         {/* Bottom Copyright Strip */}
         <div className="pt-12 border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 font-mono gap-3">
           <span>© {currentYear} NOOR — Indian Dining. All rights reserved.</span>
-          <span>NEW DELHI · BENGALURU</span>
+          <span>CHANAKYAPURI · NEW DELHI</span>
         </div>
       </div>
     </footer>

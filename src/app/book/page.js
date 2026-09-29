@@ -56,9 +56,17 @@ const TIME_SLOTS = [
   '9:30 PM',
 ];
 
+function OccasionUrlSync({ onOccasionSelect }) {
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const occ = searchParams.get('occasion');
+    if (occ) onOccasionSelect(occ);
+  }, [searchParams, onOccasionSelect]);
+  return null;
+}
+
 function BookingFormInner() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { saveReservation } = useReservation();
 
   const [date, setDate] = useState(() => {
@@ -68,7 +76,7 @@ function BookingFormInner() {
   const [guests, setGuests] = useState(2);
   const [seating, setSeating] = useState('indoor');
   const [timeSlot, setTimeSlot] = useState('8:00 PM');
-  const [occasion, setOccasion] = useState(searchParams.get('occasion') || 'Dinner Service');
+  const [occasion, setOccasion] = useState('Dinner Service');
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -77,11 +85,6 @@ function BookingFormInner() {
     specialRequests: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    const occ = searchParams.get('occasion');
-    if (occ) setOccasion(occ);
-  }, [searchParams]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -121,6 +124,9 @@ function BookingFormInner() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-10">
+      <Suspense fallback={null}>
+        <OccasionUrlSync onOccasionSelect={setOccasion} />
+      </Suspense>
       {/* 1. Date & Guest Selection */}
       <div className="p-6 sm:p-8 bg-[#1B1816] border border-stone-800 rounded-[2px]">
         <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#B89A63] font-semibold mb-6">
@@ -388,9 +394,7 @@ export default function BookingPage() {
           </p>
         </div>
 
-        <Suspense fallback={null}>
-          <BookingFormInner />
-        </Suspense>
+        <BookingFormInner />
       </div>
     </div>
   );

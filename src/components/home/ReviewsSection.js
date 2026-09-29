@@ -10,7 +10,7 @@ export default function ReviewsSection() {
     <section className="py-24 sm:py-32 bg-[#12100F] text-[#F4EFE6] border-t border-stone-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="PATRON LOG & REFLECTIONS"
+          eyebrow="FROM THE TABLE"
           title="Guest Notes"
           subtitle="Reflections and observations from patrons who have shared our candlelit salons and tasting sequences."
         />

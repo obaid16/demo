@@ -61,39 +61,62 @@ export default function AtmosphereExperience() {
           </p>
         </div>
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {HIGHLIGHTS.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="p-6 bg-[#1A1715]/80 backdrop-blur-md border border-[#B89A63]/20 hover:border-[#B89A63] transition-all duration-300 group"
-              >
-                <div className="w-10 h-10 rounded-full border border-[#B89A63]/30 bg-[#24201D] flex items-center justify-center text-[#B89A63] mb-5 group-hover:bg-[#B89A63] group-hover:text-[#171513] transition-colors">
-                  <Icon className="w-5 h-5" />
+        {/* Editorial Asymmetric Composition: Photography + Numbered Editorial List */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16">
+          {/* Left Column: Atmospheric Large Image */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative aspect-[4/3] sm:aspect-[5/4] w-full overflow-hidden border border-stone-800 rounded-[2px] shadow-2xl">
+              <Image
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80"
+                alt="NOOR Amber Dining Salon evening ambience"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 p-4 bg-[#141210]/90 backdrop-blur-sm border border-stone-800 text-stone-300 text-xs font-light rounded-[2px]">
+                <span className="text-[10px] text-[#B89A63] uppercase tracking-widest font-mono block mb-1">
+                  THE AMBER SALON
+                </span>
+                Soft amber candlelight reflected on hand-hammered brass lattices and aged teakwood.
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Numbered Architectural Spaces List */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="divide-y divide-stone-800">
+              {HIGHLIGHTS.map((item, idx) => (
+                <div key={item.title} className="py-5 first:pt-0 last:pb-0 group">
+                  <div className="flex items-baseline gap-4">
+                    <span className="font-mono text-xs text-[#B89A63]/70 font-semibold tracking-wider">
+                      0{idx + 1}
+                    </span>
+                    <div>
+                      <h3 className="font-serif text-xl sm:text-2xl text-[#FAF7F2] font-normal group-hover:text-[#B89A63] transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="mt-1.5 text-xs sm:text-[13px] text-stone-400 font-light leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl text-[#FAF7F2] mb-2">{item.title}</h3>
-                <p className="text-xs text-stone-400 font-light leading-relaxed">{item.desc}</p>
-              </motion.div>
-            );
-          })}
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Callout Action */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-8 bg-[#1E1B18] border border-[#B89A63]/30">
+        {/* Minimal Callout Strip */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-7 bg-[#171513] border border-stone-800 rounded-[2px]">
           <div>
-            <h4 className="font-serif text-2xl text-[#FAF7F2]">Planning a Private Celebration?</h4>
-            <p className="text-xs sm:text-sm text-stone-400 font-light mt-1">
+            <h4 className="font-serif text-xl sm:text-2xl text-[#FAF7F2] font-normal">Planning a Private Celebration?</h4>
+            <p className="text-xs text-stone-400 font-light mt-1">
               Host intimate anniversaries, milestone birthdays, or executive board dinners in our private suites.
             </p>
           </div>
-          <Button href="/experiences" variant="brass" size="md" className="shrink-0">
-            View Private Dining Options
+          <Button href="/experiences" variant="outline" size="sm" className="shrink-0">
+            View Private Dining
           </Button>
         </div>
       </div>

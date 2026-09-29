@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import MenuBrowser from '@/components/menu/MenuBrowser';
 
@@ -17,17 +16,7 @@ export default function MenuPage() {
           subtitle="From the fiery hearth of the tandoor to delicate slow-steamed Awadhi dum biryanis, each recipe honors heritage with contemporary culinary restraint."
         />
 
-        <Suspense
-          fallback={
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 animate-pulse">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="aspect-[4/3] bg-[#211E1B] border border-stone-800" />
-              ))}
-            </div>
-          }
-        >
-          <MenuBrowser />
-        </Suspense>
+        <MenuBrowser />
       </div>
     </div>
   );

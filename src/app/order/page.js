@@ -321,32 +321,17 @@ export default function OrderPage() {
 
       {/* Sticky Bottom Order Bar for Mobile */}
       {items.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-[#171513]/95 backdrop-blur-md border-t border-stone-800 lg:hidden shadow-2xl">
-          <div className="flex items-center justify-between gap-4 max-w-md mx-auto">
-            <div>
-              <span className="text-[10px] text-stone-400 uppercase tracking-wider block font-mono">
-                {itemCount} {itemCount === 1 ? 'Dish' : 'Dishes'} Selected
-              </span>
-              <span className="font-serif text-lg text-[#FAF7F2] font-semibold">
-                Total: ₹{total}
-              </span>
-            </div>
+        <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-[#141210]/95 backdrop-blur-md border-t border-stone-800 lg:hidden shadow-2xl">
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="w-full py-3.5 px-6 bg-[#A9573F] hover:bg-[#934833] text-white text-xs uppercase tracking-widest font-semibold flex items-center justify-between rounded-[2px] shadow-2xl cursor-pointer"
+          >
             <div className="flex items-center gap-2">
-              <button
-                onClick={() => setIsCartOpen(true)}
-                className="px-3.5 py-2.5 bg-[#25211E] border border-stone-700 text-[#FAF7F2] text-xs uppercase tracking-wider rounded-[2px] cursor-pointer"
-              >
-                Tray
-              </button>
-              <Link
-                href="/checkout"
-                className="px-5 py-2.5 bg-[#A9573F] hover:bg-[#934833] text-white text-xs uppercase tracking-widest font-semibold flex items-center gap-1.5 rounded-[2px] cursor-pointer"
-              >
-                <span>Checkout</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              <ShoppingBag className="w-4 h-4" />
+              <span>View Order · {itemCount} {itemCount === 1 ? 'item' : 'items'}</span>
             </div>
-          </div>
+            <span className="font-serif text-sm font-medium">₹{total}</span>
+          </button>
         </div>
       )}
     </div>
